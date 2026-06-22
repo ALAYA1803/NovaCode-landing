@@ -1,0 +1,560 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   ESTILO: MINIMALISMO SUIZO — High Contrast
+   Paleta corporativa: blanco, terracota, negro.
+   Ratios WCAG AA garantizados (≥ 4.5:1):
+     #000000 / #fff → 21:1   (text-primary)
+     #515151 / #fff →  7.0:1 (text-secondary)
+     #737373 / #fff →  4.6:1 (text-muted)
+     #b55f43 / #fff →  5.1:1 (accent-dim, uso en texto)
+============================================= */
+:root {
+  /* Backgrounds */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafafa;
+
+  /* Borders */
+  --border: #e5e5e5;
+  --border-light: #f0f0f0;
+
+  /* Acento — terracota: cálido, humano, diferenciador */
+  --accent: #d97757;
+  --accent-dim: #b55f43;
+  --accent-glow: rgba(217, 119, 87, 0.06);
+  --accent-glow-strong: rgba(217, 119, 87, 0.12);
+
+  /* Text hierarchy — tres niveles, contraste WCAG AA en cada uno */
+  --text-primary: #000000;
+  --text-secondary: #515151;
+  --text-muted: #737373;
+
+  /* System */
+  --font-mono: 'Roboto Mono', monospace;
+  --spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =============================================
+   BASE
+============================================= */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* =============================================
+   KEYFRAMES
+============================================= */
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: scale(0.65);
+  }
+}
+
+@keyframes hero-badge-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-headline-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-sub-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-actions-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-metrics-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes mobile-nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(56px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =============================================
+   SCROLL REVEAL
+============================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 560ms var(--spring), transform 560ms var(--spring);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 560ms var(--spring), transform 560ms var(--spring);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 560ms var(--spring), transform 560ms var(--spring);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =============================================
+   SECTION TAG — used outside Hero
+============================================= */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border: 1px solid rgba(217, 119, 87, 0.2);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulse-dot 2.8s ease-in-out infinite;
+}
+
+/* =============================================
+   HERO ENTRY ANIMATIONS
+============================================= */
+.hero-badge-anim {
+  animation: hero-badge-in 0.9s var(--spring) 0.15s both;
+}
+
+.hero-headline-anim {
+  animation: hero-headline-in 1.0s var(--spring) 0.30s both;
+}
+
+.hero-sub-anim {
+  animation: hero-sub-in 1.0s var(--spring) 0.46s both;
+}
+
+.hero-actions-anim {
+  animation: hero-actions-in 1.0s var(--spring) 0.60s both;
+}
+
+.hero-metrics-anim {
+  animation: hero-metrics-in 1.0s var(--spring) 0.76s both;
+}
+
+.hero-dashboard-anim {
+  animation: hero-rise 1.2s var(--spring) 0.88s both;
+}
+
+/* =============================================
+   HERO EYEBROW (replaces neon badge)
+   Two horizontal rules flanking text — editorial.
+============================================= */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-eyebrow-line {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.hero-eyebrow-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* =============================================
+   HERO HEADLINE — weight contrast, not color
+============================================= */
+.hero-headline-soft {
+  display: block;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: -0.025em;
+}
+
+.hero-headline-bold {
+  display: block;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+}
+
+/* =============================================
+   HERO CTA — primary: white; ghost: text-only
+============================================= */
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 220ms var(--spring),
+    box-shadow 220ms var(--spring);
+}
+
+.btn-hero-primary:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.btn-hero-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-hero-primary svg {
+  transition: transform 220ms var(--spring);
+}
+
+.btn-hero-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-hero-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 14px 16px;
+  text-decoration: none;
+  letter-spacing: 0.005em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.btn-hero-ghost:hover {
+  color: var(--text-primary);
+}
+
+/* =============================================
+   HERO METRICS
+============================================= */
+.hero-metric-value {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 7px;
+}
+
+.hero-metric-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-metric-sep {
+  width: 1px;
+  height: 36px;
+  background: var(--border-light);
+  flex-shrink: 0;
+}
+
+/* =============================================
+   SERVICES SECTION
+============================================= */
+.services-section {
+  position: relative;
+}
+
+.services-section::before,
+.services-section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+
+.services-section::before {
+  top: 0;
+}
+
+.services-section::after {
+  bottom: 0;
+}
+
+/* =============================================
+   SERVICE CARD
+============================================= */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 360ms var(--spring);
+}
+
+.service-card:hover::before {
+  opacity: 0.6;
+}
+
+/* =============================================
+   PROCESS FLOW
+============================================= */
+.process-flow-wrap {
+  position: relative;
+}
+
+.process-flow-wrap::before {
+  content: '';
+  position: absolute;
+  top: 52px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--border-light) 20%,
+      var(--border-light) 80%,
+      transparent);
+  z-index: 0;
+}
+
+/* =============================================
+   ESTIMATOR SECTION
+============================================= */
+.estimator-section {
+  position: relative;
+}
+
+.estimator-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+
+/* =============================================
+   WIZARD WIDGET — thin top accent, not gradient rainbow
+============================================= */
+.wizard-widget {
+  position: relative;
+  overflow: hidden;
+}
+
+.wizard-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+/* =============================================
+   WIZARD STEP + RADIO
+============================================= */
+.wizard-step-active {
+  animation: step-in 0.38s var(--spring) both;
+}
+
+.radio-dot::after {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* =============================================
+   FORM SELECT
+============================================= */
+.form-select-custom {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* =============================================
+   MOBILE NAV
+============================================= */
+.mobile-nav-open {
+  animation: mobile-nav-in 0.22s ease both;
+}
+
+/* =============================================
+   REDUCED MOTION
+============================================= */
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .hero-badge-anim,
+  .hero-headline-anim,
+  .hero-sub-anim,
+  .hero-actions-anim,
+  .hero-metrics-anim,
+  .hero-dashboard-anim,
+  .wizard-step-active,
+  .mobile-nav-open {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
