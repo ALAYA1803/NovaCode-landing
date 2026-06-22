@@ -1,4 +1,5 @@
 ﻿/* ─── Footer column ─── */
+import logoNegro from '../assets/logo-novacode-negro.png'
 
 interface FooterCol {
   heading: string
@@ -56,7 +57,7 @@ export default function Footer() {
               aria-label="NovaCode — inicio"
             >
               <img
-                src="./src/shared/logo-novacode-negro.png"
+                src={logoNegro}
                 alt="NovaCode"
                 style={{ height: 32, width: 'auto', display: 'block' }}
               />

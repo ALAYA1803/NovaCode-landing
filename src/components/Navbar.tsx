@@ -1,5 +1,6 @@
 ﻿import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import logoNegro from '../assets/logo-novacode-negro.png'
 
 const NAV_LINKS = [
   { label: 'Servicios', href: '#servicios' },
@@ -47,7 +48,7 @@ export default function Navbar() {
           aria-label="NovaCode — inicio"
         >
           <img
-            src="./src/shared/logo-novacode-negro.png"
+            src={logoNegro}
             alt="NovaCode"
             style={{ height: 32, width: 'auto', display: 'block' }}
           />
